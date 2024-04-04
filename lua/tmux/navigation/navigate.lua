@@ -3,6 +3,7 @@ local log = require("tmux.log")
 local nvim = require("tmux.wrapper.nvim")
 local options = require("tmux.configuration.options")
 local tmux = require("tmux.wrapper.tmux")
+local hypr = require("tmux.wrapper.hypr")
 
 local opposite_directions = {
     h = "l",
@@ -35,6 +36,8 @@ function M.to(direction)
         nvim.wincmd(opposite_directions[direction], 999)
     elseif not is_nvim_border then
         nvim.wincmd(direction, vim.v.count)
+    else
+      hypr.change_window(direction)
     end
 end
 
